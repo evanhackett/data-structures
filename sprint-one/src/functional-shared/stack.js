@@ -12,13 +12,13 @@ var stackMethods = {
     this.storage[this.counter] = value;
   },
   pop : function(){
+    if (this.counter === 0) return undefined;
     var temp = this.storage[this.counter];
     delete this.storage[this.counter];
     this.counter--;
     return temp;
   },
   size : function(){
-    if (this.counter <= 0) return 0;
     return this.counter;
   }
 };
