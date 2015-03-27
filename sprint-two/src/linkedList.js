@@ -15,7 +15,7 @@ var LinkedList = function(){
 
   list.removeHead = function(){
     var temp = list.head;
-    delete list[list.head];
+    //delete list[list.head];
     list.head = temp.next;
 
     return temp.value;
