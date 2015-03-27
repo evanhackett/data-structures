@@ -15,7 +15,7 @@ var LinkedList = function(){
 
   list.removeHead = function(){
     var temp = list.head;
-    //delete list[list.head];
+    //delete list[list.head]; // this should be garbage collected.
     list.head = temp.next;
 
     return temp.value;
