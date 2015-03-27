@@ -9,14 +9,6 @@ Graph.prototype.addNode = function(node){
 };
 
 Graph.prototype.contains = function(node){
-  /*for (var i = 0; i < this.nodes.length; i++) {
-    if (this.nodes[i].value === node) {
-      return true;
-    }
-  }
-  return false;
-  */
-
   if (this.nodes[node]) {
     return true;
   } else {
@@ -47,17 +39,10 @@ Graph.prototype.removeEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.forEachNode = function(cb){
-
+  for (var key in this.nodes) {
+    cb(key);
+  }
 };
-
-/*
-var Node = function(value) {
-  var node = {};
-  node.value = value;
-  node.neighbors = [];
-  return node;
-};
-*/
 
 
 /*
