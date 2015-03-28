@@ -18,14 +18,19 @@ Graph.prototype.contains = function(node){
 };
 
 Graph.prototype.removeNode = function(node){
-  for (var edgeTable in this.nodes[node]) {
-    this.removeEdge(edgeTable[node]);
+  if (this.contains(node)) {
+    for (var edgeTable in this.nodes[node]) {
+      this.removeEdge(edgeTable[node]);
+    }
+    delete this.nodes[node];
   }
-  delete this.nodes[node];
 };
 
 Graph.prototype.hasEdge = function(fromNode, toNode){
-  return this.nodes[fromNode][toNode] ? true : false;
+  if (this.contains(toNode) && this.contains(fromNode)) {
+    return this.nodes[fromNode][toNode] ? true : false;
+  }
+  return false;
 };
 
 Graph.prototype.addEdge = function(fromNode, toNode){
@@ -36,8 +41,10 @@ Graph.prototype.addEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.removeEdge = function(fromNode, toNode){
-  delete this.nodes[fromNode][toNode];
-  delete this.nodes[toNode][fromNode];
+  if (this.contains(toNode) && this.contains(fromNode)) {
+    delete this.nodes[fromNode][toNode];
+    delete this.nodes[toNode][fromNode];
+  }
 };
 
 Graph.prototype.forEachNode = function(cb){
