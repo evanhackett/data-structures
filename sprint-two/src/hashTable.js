@@ -18,11 +18,18 @@ HashTable.prototype.retrieve = function(k){
       return bucket[j][1];
     }
   }
-
+  return null;
 };
 
 HashTable.prototype.remove = function(k){
-
+  var i = getIndexBelowMaxForKey(k, this._limit);
+  var bucket = this._storage.get(i);
+  for (var j = 0; j < bucket.length; j++) {
+    if (bucket[j][0] === k) {
+      bucket.splice(j,1);
+      this._storage.set(i, bucket);
+    }
+  }
 };
 
 
