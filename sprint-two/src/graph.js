@@ -29,8 +29,10 @@ Graph.prototype.hasEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.addEdge = function(fromNode, toNode){
-  this.nodes[fromNode][toNode] = true;
-  this.nodes[toNode][fromNode] = true;
+  if (this.contains(toNode) && this.contains(fromNode)) {
+    this.nodes[fromNode][toNode] = true;
+    this.nodes[toNode][fromNode] = true;
+  }
 };
 
 Graph.prototype.removeEdge = function(fromNode, toNode){
